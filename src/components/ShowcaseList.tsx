@@ -1,0 +1,84 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+interface IProps {
+  name: string;
+  showcaseItems: Product[];
+}
+
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 32px;
+`;
+
+const ListItem = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  color: unset;
+  text-decoration: none;
+`;
+
+const ImageContainer = styled.div`
+  height: 240px;
+  border-radius: 4px;
+  overflow: hidden;
+  transform: translateZ(0);
+`;
+
+const Thumbnail = styled.img`
+  width: 100%;
+  transition: all 0.3s;
+
+  ${ListItem}:hover & {
+    transform: scale(1.1);
+  }
+`;
+
+const CategoryTitle = styled.h4`
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 12px;
+`;
+
+const ItemTitle = styled.h5`
+  font-size: 20px;
+  font-weight: normal;
+`;
+
+const Price = styled.p `
+  margin: 0;
+`;
+
+const ShowcaseListItem = ({ item }: any) => (
+  <ListItem to={`/info/${item.id}`}>
+    <ImageContainer>
+      <Thumbnail src={item.img} alt="food 1" />
+    </ImageContainer>
+
+    <TextContainer>
+      <ItemTitle>{item.title}</ItemTitle>
+      <Price>€{item.price.toLocaleString('nl')}</Price>
+    </TextContainer>
+  </ListItem>
+)
+
+const ShowcaseList: React.SFC<IProps> = ({ name, showcaseItems }) => (
+  <>
+    <CategoryTitle>{name}</CategoryTitle>
+    <Row>
+      { showcaseItems.map(item => <ShowcaseListItem key={item.title} item={item} />) }
+    </Row>
+  </>
+);
+
+export default ShowcaseList;
