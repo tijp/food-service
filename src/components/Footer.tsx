@@ -7,7 +7,7 @@ import TwitterIcon from '../assets/icons/twitter.svg';
 import InstagramIcon from '../assets/icons/instagram.svg';
 
 const FooterContainer = styled.footer`
-  margin-top: 100px;
+  margin-top: 40px;
   width: 100vw;
   background: ${COLORS.PRIMARY_COLOR};
 `;

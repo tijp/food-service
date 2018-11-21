@@ -8,9 +8,10 @@ const StyledButton = styled.button`
   touch-action: manipulation;
   cursor: pointer;
 
-  height: 38px;
-  padding: 0 15px;
+  height: 44px;
+  padding: 0 25px;
   font-size: 18px;
+  font-weight: 700;
   border-radius: 4px;
   user-select: none;
   white-space: nowrap;

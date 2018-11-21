@@ -38,25 +38,27 @@ const Thumbnail = styled.img`
 `;
 
 const CategoryTitle = styled.h4`
-  font-size: 24px;
-  font-weight: bold;
+  margin: 24px 0;
+  font-size: calc(16px + 2vmin);
+  font-weight: 800;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin: 0 12px;
+  align-items: baseline;
 `;
 
 const ItemTitle = styled.h5`
+  margin: 12px 6px;
   font-size: 20px;
-  font-weight: normal;
-`;
+  font-weight: 500;
+  `;
 
-const Price = styled.p `
-  margin: 0;
+const Price = styled(ItemTitle)`
+  font-size: 22px;
+  font-weight: 600;
 `;
 
 const ShowcaseListItem = ({ item }: any) => (

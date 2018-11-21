@@ -5,14 +5,15 @@ import styled from 'styled-components';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Info from './pages/Info';
 import Contact from './pages/Contact';
 
 const MaxWidth = styled.div`
   margin: 0 auto;
   max-width: 1238px;
-  padding: 32px;
+  /* padding: 32px; // Desktop */
+  /* padding: 24px 16px; // Mobile */
 `;
 
 const App = () => (
