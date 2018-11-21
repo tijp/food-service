@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -10,8 +10,11 @@ import { ReactComponent as HamburgerSVG } from '../assets/icons/line-menu.svg';
 const HeaderContainer = styled.header`
   /* margin-top: 20px; */
   /* margin-bottom: 44px; */
-  padding: 20px 16px;
   border-top: 3px solid ${COLORS.PRIMARY_COLOR};
+`;
+
+const Row = styled.div`
+  padding: 20px 16px;
 
   display: flex;
   flex-direction: row;
@@ -36,31 +39,69 @@ const Hamburger = styled(HamburgerSVG)`
   width: 23px; height: 23px;
 `;
 
-// const MenuItem = styled(StyledLink)`
-//   font-weight: normal;
-//   font-size: calc(8px + 1.2vmin);
+const NavLink = styled(Link)`
+  display: flex;
+  flex: 1;
+  color: unset;
+  text-decoration: none;
+  padding: 15px;
 
-//   &:hover {
-//     cursor: pointer;
-//     color: #ff6464;
-//     transition: color 300ms ease;
-//   }
-// `;
+  &:hover {
+    cursor: pointer;
+    color: ${COLORS.PRIMARY_COLOR};
+    transition: color 300ms ease;
+  }
+`;
 
-const Header = () => (
-  <HeaderContainer>
+const Nav = styled.ul<{ open?: boolean }>`
+  list-style: none;
+  padding: 0;
+  /* float: left; */
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  height: auto;
+  overflow: visible;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 
-    <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
-    <Hamburger />
+  height: ${props => props.open ? 'auto' : 0};
+  overflow: ${props => props.open ? 'visible' : 'hidden' };
 
-    {/* <Menu right>
-      <a id="home" className="menu-item" href="/">Home</a>
-      <a id="about" className="menu-item" href="/about">About</a>
-      <a id="contact" className="menu-item" href="/contact">Contact</a>
-    </Menu> */}
+  & li {
+    float: none;
+    position: relative;
+    margin-right: 0;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+`;
 
-    {/* <MenuItem to="/contact">Contact</MenuItem> */}
-  </HeaderContainer>
-);
+const Header = () => {
+  const [expandNav, setExpandNav] = useState(false);
+
+  const li = (text: string, path: string) =>
+    <li onClick={() => setExpandNav(false)}><NavLink to={path}>{text}</NavLink></li>;
+
+
+  return (
+    <HeaderContainer>
+
+      <Row>
+        <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
+        <Hamburger onClick={() => setExpandNav(!expandNav)} />
+      </Row>
+
+      <Nav open={expandNav} role="navigation">
+        {li('Products', '/products')}
+        {li('FAQ', '/faq')}
+        {li('Contact', '/contact')}
+      </Nav>
+
+      {/* <MenuItem to="/contact">Contact</MenuItem> */}
+    </HeaderContainer>
+  );
+};
 
 export default Header;

@@ -15,6 +15,7 @@ const Home = () => (
   
     <Padding>
       <ShowcaseList name="Category 1" showcaseItems={getProductFromCategory(CATEGORIES.ONE)} />
+      <br />
       <ShowcaseList name="Category 2" showcaseItems={getProductFromCategory(CATEGORIES.TWO)} />
     </Padding>
   </section>
