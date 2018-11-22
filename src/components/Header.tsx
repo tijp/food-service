@@ -6,6 +6,7 @@ import './hamburger-menu.css'
 import COLORS from '../assets/colors';
 
 import { ReactComponent as HamburgerSVG } from '../assets/icons/line-menu.svg';
+import ShoppingCart from './ShoppingCart';
 
 const HeaderContainer = styled.header`
   /* margin-top: 20px; */
@@ -20,6 +21,10 @@ const Row = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+const IconContainer = styled(Row)`
+  padding: 0;
 `;
 
 const Logo = styled(Link)`
@@ -37,6 +42,10 @@ const LogoColorSpan = styled.span`
 const Hamburger = styled(HamburgerSVG)`
   margin-right: 5px;
   width: 23px; height: 23px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const NavLink = styled(Link)`
@@ -90,7 +99,11 @@ const Header = () => {
 
       <Row>
         <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
-        <Hamburger onClick={() => setExpandNav(!expandNav)} />
+
+        <IconContainer>
+          <ShoppingCart />
+          <Hamburger onClick={() => setExpandNav(!expandNav)} />
+        </IconContainer>
       </Row>
 
       <Nav open={expandNav} role="navigation">

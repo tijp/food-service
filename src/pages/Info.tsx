@@ -3,19 +3,22 @@ import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 
 import { findProduct } from '../assets/products';
+import Button from '../components/Button';
 
-const Container = styled.div`
-  margin-top: 80px;
+const Container = styled.section`
+  padding: 20px;
 `;
 
 const Row = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Image = styled.img`
-  height: 400px;
-  width: 50%;
+  height: 300px;
+  width: 100%;
   border-radius: 8px;
   object-fit: cover;
 `;
@@ -31,17 +34,16 @@ const Info: React.SFC<RouteComponentProps<{ id: string }>> = props => {
     <Container>
       <h1>{product.title}</h1>
 
+      <Image src={product.img} />
+
       <Row>
-        <Image src={product.img} />
-        <h3>{product.price}</h3>
+        <h3>€{product.price}</h3>
+
+        <input type="number" value={1} />
+        <Button text="Bestellen" />
       </Row>
 
-
-      <h3>Ingredients</h3>
-      <p>Ingredient 1</p>
-      <p>Ingredient 2</p>
-      <p>Ingredient 3</p>
-      <p>Ingredient 4</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </Container>
   );
 };

@@ -5,37 +5,37 @@ export enum CATEGORIES {
 
 const products: Product[] = [{
   id: '1',
-  title: 'Item 1',
+  title: 'Pizza Margherita',
   category: CATEGORIES.ONE,
   price: 23.99,
   img: require('assets/images/food1.jpg'),
 }, {
   id: '2',
-  title: 'Item 2',
+  title: 'Spaghetti Bolognese',
   category: CATEGORIES.ONE,
   price: 19.99,
   img: require('assets/images/food2.jpg'),
 }, {
   id: '3',
-  title: 'Item 3',
+  title: 'Spinazie',
   category: CATEGORIES.ONE,
   price: 29.99,
   img: require('assets/images/food3.jpg'),
 }, {
   id: '4',
-  title: 'Item 1',
+  title: 'Hamburger',
   category: CATEGORIES.TWO,
   price: 5.99,
   img: require('assets/images/food4.jpg'),
 }, {
   id: '5',
-  title: 'Item 2',
+  title: 'Sperziebonen',
   category: CATEGORIES.TWO,
   price: 7.99,
   img: require('assets/images/food5.jpg'),
 }, {
   id: '6',
-  title: 'Item 3',
+  title: 'Bruine Bonen',
   category: CATEGORIES.TWO,
   price: 4.99,
   img: require('assets/images/food6.jpg'),

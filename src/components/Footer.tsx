@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import COLORS from '../assets/colors';
 import FacebookIcon from '../assets/icons/facebook.svg';
 import TwitterIcon from '../assets/icons/twitter.svg';
 import InstagramIcon from '../assets/icons/instagram.svg';
@@ -9,7 +8,7 @@ import InstagramIcon from '../assets/icons/instagram.svg';
 const FooterContainer = styled.footer`
   margin-top: 40px;
   width: 100vw;
-  background: ${COLORS.PRIMARY_COLOR};
+  background: #333;
 `;
 
 const Content = styled.div`
