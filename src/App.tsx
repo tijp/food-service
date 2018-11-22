@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home/Home';
 import Info from './pages/Info';
 import Contact from './pages/Contact';
+import ScrollToTop from './components/ScrollToTop';
 
 const MaxWidth = styled.div`
   margin: 0 auto;
@@ -18,7 +19,7 @@ const MaxWidth = styled.div`
 
 const App = () => (
   <Router>
-    <>
+    <ScrollToTop>
       <MaxWidth>
         <Header />
 
@@ -31,7 +32,7 @@ const App = () => (
       </MaxWidth>
 
       <Footer />
-    </>
+    </ScrollToTop>
   </Router>
 );
 
