@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer';
+import ScrollToTop from '../../components/ScrollToTop';
 
-import Home from './pages/Home/Home';
-import Info from './pages/Info';
-import Contact from './pages/Contact';
-import ScrollToTop from './components/ScrollToTop';
+import Home from '../Home/Home';
+import Info from '../Info';
+import Contact from '../Contact';
+import Basket from '../Basket';
 
 const MaxWidth = styled.div`
   margin: 0 auto;
@@ -17,7 +18,7 @@ const MaxWidth = styled.div`
   /* padding: 24px 16px; // Mobile */
 `;
 
-const App = () => (
+const Routes = () => (
   <Router>
     <ScrollToTop>
       <MaxWidth>
@@ -26,6 +27,7 @@ const App = () => (
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/info/:id" component={Info} />
+          <Route path="/basket" component={Basket} />
           <Route path="/contact" component={Contact} />
           <Redirect to="/" />
         </Switch>
@@ -36,4 +38,4 @@ const App = () => (
   </Router>
 );
 
-export default App;
+export default Routes;

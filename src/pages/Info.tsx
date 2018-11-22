@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import { findProduct } from '../assets/products';
 import Button from '../components/Button';
-
-const Container = styled.section`
-  padding: 20px;
-`;
+import { AddToBasket } from '../stores/basket/actions';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import Section from '../components/Section';
 
 const Row = styled.div`
   display: flex;
@@ -23,7 +23,11 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
-const Info: React.SFC<RouteComponentProps<{ id: string }>> = props => {
+interface IProps extends RouteComponentProps<{ id: string }> {
+  addToBasket(product: string): void;
+}
+
+const Info: React.SFC<IProps> = props => {
   const product = findProduct(props.match.params.id);
   if (!product) {
     props.history.push('/');
@@ -31,7 +35,7 @@ const Info: React.SFC<RouteComponentProps<{ id: string }>> = props => {
   }
 
   else return (
-    <Container>
+    <Section>
       <h1>{product.title}</h1>
 
       <Image src={product.img} />
@@ -39,13 +43,17 @@ const Info: React.SFC<RouteComponentProps<{ id: string }>> = props => {
       <Row>
         <h3>€{product.price}</h3>
 
-        <input type="number" value={1} />
-        <Button text="Bestellen" />
+        <input type="number" defaultValue="1" />
+        <Button text="Bestellen" onClick={() => props.addToBasket('test')} />
       </Row>
 
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </Container>
+    </Section>
   );
 };
 
-export default Info;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addToBasket: (product: string) => dispatch(new AddToBasket(product)),
+});
+
+export default connect(null, mapDispatchToProps)(Info);

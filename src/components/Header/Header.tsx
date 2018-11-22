@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import './hamburger-menu.css'
-import COLORS from '../assets/colors';
+import COLORS from '../../assets/colors';
 
-import { ReactComponent as HamburgerSVG } from '../assets/icons/line-menu.svg';
-import ShoppingCart from './ShoppingCart';
+import { ReactComponent as HamburgerSVG } from '../../assets/icons/line-menu.svg';
+import BasketButton from './BasketButton';
 
 const HeaderContainer = styled.header`
   /* margin-top: 20px; */
@@ -101,7 +100,7 @@ const Header = () => {
         <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
 
         <IconContainer>
-          <ShoppingCart />
+          <BasketButton />
           <Hamburger onClick={() => setExpandNav(!expandNav)} />
         </IconContainer>
       </Row>

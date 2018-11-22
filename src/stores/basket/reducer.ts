@@ -23,3 +23,7 @@ export default reducer;
 export const getBasketSize = (state: RootState) => (
   state.basketState.basket.length
 );
+
+export const getBasketItems = (state: RootState) => (
+  state.basketState.basket
+);

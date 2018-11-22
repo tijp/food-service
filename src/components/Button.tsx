@@ -29,8 +29,13 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ text }: any) => (
-  <StyledButton>{text}</StyledButton>
+interface IProps {
+  text: string;
+  onClick: () => void;
+}
+
+const Button: React.SFC<IProps> = ({ text, ...props }) => (
+  <StyledButton {...props}>{text}</StyledButton>
 )
 
 export default Button;
