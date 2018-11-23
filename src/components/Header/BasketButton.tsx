@@ -42,7 +42,8 @@ interface IProps {
 const BasketButton: React.SFC<IProps> = ({ basketSize }) => (
   <Container to="/basket">
     <ShoppingCartIcon />
-    <BasketQuantity>{basketSize}</BasketQuantity>
+    { basketSize > 0 &&
+      <BasketQuantity>{basketSize}</BasketQuantity> }
   </Container>
 );
 

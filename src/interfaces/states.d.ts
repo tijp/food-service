@@ -3,5 +3,5 @@ interface RootState {
 }
 
 interface BasketState {
-  basket: string[];
+  basket: BasketItem[];
 }

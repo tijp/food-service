@@ -3,7 +3,15 @@ export enum CATEGORIES {
   TWO = 'Category 2',
 };
 
-const products: Product[] = [{
+export const newProduct: Product = {
+  id: '7',
+  title: 'Pizza Tonno',
+  category: CATEGORIES.ONE,
+  price: 26.99,
+  img: require('assets/images/food4.jpg'),
+};
+
+export const products: Product[] = [{
   id: '1',
   title: 'Pizza Margherita',
   category: CATEGORIES.ONE,
@@ -46,5 +54,3 @@ export const findProduct = (id: string) =>
 
 export const getProductFromCategory = (category: CATEGORIES) =>
   products.filter(product => product.category === category);
-
-export default products;

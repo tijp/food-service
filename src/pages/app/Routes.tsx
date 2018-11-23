@@ -9,7 +9,7 @@ import ScrollToTop from '../../components/ScrollToTop';
 import Home from '../Home/Home';
 import Info from '../Info';
 import Contact from '../Contact';
-import Basket from '../Basket';
+import Basket from '../Basket/Basket';
 
 const MaxWidth = styled.div`
   margin: 0 auto;

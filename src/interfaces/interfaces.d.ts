@@ -5,3 +5,8 @@ interface Product {
   price: number;
   img: string;
 }
+
+interface BasketItem {
+  product: Product;
+  amount: number;
+}

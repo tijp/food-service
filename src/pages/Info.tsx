@@ -1,20 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 
-import { findProduct } from '../assets/products';
+import { findProduct } from '../assets/mockedProducts';
 import Button from '../components/Button';
 import { AddToBasket } from '../stores/basket/actions';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import Section from '../components/Section';
-
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 const Image = styled.img`
   height: 300px;
@@ -23,8 +16,26 @@ const Image = styled.img`
   object-fit: cover;
 `;
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+`;
+
+const NumberInput = styled.input`
+  width: 35px; height: 31px;
+  padding: 5px;
+  margin-right: 5px;
+  font-size: 18px;
+  font-family: Montserrat;
+  border: solid #ccc 1px;
+  border-radius: 6px;
+  text-align: center;
+`;
+
 interface IProps extends RouteComponentProps<{ id: string }> {
-  addToBasket(product: string): void;
+  addToBasket(item: BasketItem): void;
 }
 
 const Info: React.SFC<IProps> = props => {
@@ -34,26 +45,38 @@ const Info: React.SFC<IProps> = props => {
     return null;
   }
 
-  else return (
-    <Section>
-      <h1>{product.title}</h1>
+  else {
+    const [amount, setAmount] = useState(1);
+    return (
+      <Section>
+        <h1>{product.title}</h1>
+        <Image src={product.img} />
 
-      <Image src={product.img} />
+        <Row>
+          <h3>€{product.price}</h3>
 
-      <Row>
-        <h3>€{product.price}</h3>
+          <div>
+            <NumberInput
+              type="number"
+              value={amount}
+              min={1} max={50}
+              onChange={event => setAmount(parseInt(event.target.value))}
+            />
+            <Button
+              text="In Winkelwagen"
+              onClick={() => props.addToBasket({ product, amount })}
+            />
+          </div>
+        </Row>
 
-        <input type="number" defaultValue="1" />
-        <Button text="Bestellen" onClick={() => props.addToBasket('test')} />
-      </Row>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </Section>
-  );
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </Section>
+    );
+  }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  addToBasket: (product: string) => dispatch(new AddToBasket(product)),
+  addToBasket: (item: BasketItem) => dispatch(new AddToBasket(item)),
 });
 
 export default connect(null, mapDispatchToProps)(Info);

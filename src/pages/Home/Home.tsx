@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ShowcaseList from '../../components/ShowcaseList';
-import { getProductFromCategory, CATEGORIES } from '../../assets/products';
+import { getProductFromCategory, CATEGORIES } from '../../assets/mockedProducts';
 import Jumbotron from './Jumbotron';
 import Section from '../../components/Section';
 
