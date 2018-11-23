@@ -12,8 +12,9 @@ import Contact from '../Contact';
 import Basket from '../Basket/Basket';
 
 const MaxWidth = styled.div`
+  flex: 1;
   margin: 0 auto;
-  max-width: 1238px;
+  width: 100%; max-width: 1238px;
   /* padding: 32px; // Desktop */
   /* padding: 24px 16px; // Mobile */
 `;

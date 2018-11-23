@@ -6,8 +6,9 @@ import TwitterIcon from '../assets/icons/twitter.svg';
 import InstagramIcon from '../assets/icons/instagram.svg';
 
 const FooterContainer = styled.footer`
-  margin-top: 40px;
+  /* flex-shrink: 0; */
   width: 100vw;
+  margin-top: 40px;
   background: #333;
 `;
 
@@ -39,7 +40,7 @@ const Copyright = styled.i`
   display: flex;
   justify-content: center;
   color: #fff;
-  margin: 48px 0;
+  margin-bottom: 48px;
 `;
 
 const Footer = () => (
