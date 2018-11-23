@@ -1,13 +1,41 @@
-import { products } from '../../assets/mockedProducts';
 import {
   Actions,
   ADD_TO_BASKET,
   REMOVE_FROM_BASKET,
 } from './actions';
 
+// Basket Type Guard
+function isBasket(obj: any): obj is BasketItem[] {
+  const isBasket = Array.isArray(obj) && obj.every((item: any) => {
+    return item.product !== undefined && item.amount !== undefined;
+  });
+
+  console.log(!isBasket);
+  if (!isBasket) localStorage.removeItem('basket');
+  return isBasket;
+}
+
+const getPersistedBasket = () => {
+  const localStorageBasket = localStorage.getItem('basket');
+  
+  let basket: BasketItem[] = [];
+  if (localStorageBasket) {
+    try {
+      const parsedBasket = JSON.parse(localStorageBasket);
+      if (isBasket(parsedBasket))
+        basket = parsedBasket;
+    } catch {
+      localStorage.removeItem('basket');
+    }
+  }
+
+  return basket;
+}
+
+
 const initialState: BasketState = {
   // basket: products.slice(0, 2).map(product => ({ product, amount: 1 })),
-  basket: [],
+  basket: getPersistedBasket(),
 };
 
 const reducer = (state = initialState, action: Actions): BasketState => {
@@ -30,6 +58,7 @@ const reducer = (state = initialState, action: Actions): BasketState => {
         })
       }
 
+      localStorage.setItem('basket', JSON.stringify(basket));
       return { ...state, basket };
     }
 
