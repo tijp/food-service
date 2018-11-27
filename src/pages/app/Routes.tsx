@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
 
 import Home from '../Home/Home';
+import Products from '../Products';
 import Info from '../Info';
 import Contact from '../Contact';
 import Basket from '../Basket/Basket';
@@ -27,6 +28,7 @@ const Routes = () => (
 
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/products" component={Products} />
           <Route path="/info/:id" component={Info} />
           <Route path="/basket" component={Basket} />
           <Route path="/contact" component={Contact} />

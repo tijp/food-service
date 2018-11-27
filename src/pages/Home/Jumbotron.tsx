@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import jumbotronImage from 'assets/images/jumbotron4.jpg';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   color: #fff;
@@ -37,7 +38,9 @@ const Jumbotron = () => (
 
     <Content>
       <h1>This website is using the new React Hooks</h1>
-      <Button text="Show more" onClick={() => 'TODO'} />
+      <Link to="/products">
+        <Button text="Show more" onClick={() => 'TODO'} />
+      </Link>
     </Content>
 
   </Container>
