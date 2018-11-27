@@ -9,7 +9,7 @@ interface IProps {
 
 const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-gap: 32px;
 `;
 
@@ -22,7 +22,7 @@ const ListItem = styled(Link)`
 `;
 
 const ImageContainer = styled.div`
-  height: 240px;
+  height: 220px;
   border-radius: 4px;
   overflow: hidden;
   transform: translateZ(0);

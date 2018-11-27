@@ -14,7 +14,6 @@ const List = styled.ul`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-top: 20px;
 `;
 
 interface IProps {
