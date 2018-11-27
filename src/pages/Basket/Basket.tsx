@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from '../../components/Section';
 import { connect } from 'react-redux';
-import { getBasketItems } from '../../stores/basket/reducer';
+import { getBasketItems, getBasketTotalPrice } from '../../stores/basket/reducer';
 import styled from 'styled-components';
 import BasketItem from './BasketItem';
 import Button from '../../components/Button';
@@ -19,9 +19,10 @@ const ButtonContainer = styled.div`
 
 interface IProps {
   basketItems: BasketItem[];
+  basketTotalPrice: string;
 }
 
-const Basket: React.SFC<IProps> = ({ basketItems }) => (
+const Basket: React.SFC<IProps> = ({ basketItems, basketTotalPrice }) => (
   <Section>
     <h1>Basket</h1>
 
@@ -33,6 +34,8 @@ const Basket: React.SFC<IProps> = ({ basketItems }) => (
       }
     </List>
 
+    <h3 style={{ display: 'flex', justifyContent: 'flex-end' }}>€{basketTotalPrice}</h3>
+
     <ButtonContainer>
       <Button text="Bestellen" onClick={() => null} />
     </ButtonContainer>
@@ -41,6 +44,7 @@ const Basket: React.SFC<IProps> = ({ basketItems }) => (
 
 const mapStateToProps = (state: RootState) => ({
   basketItems: getBasketItems(state),
+  basketTotalPrice: getBasketTotalPrice(state),
 });
 
 export default connect(mapStateToProps)(Basket);

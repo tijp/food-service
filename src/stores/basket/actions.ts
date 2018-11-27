@@ -4,6 +4,7 @@
 
 export const ADD_TO_BASKET = 'ADD_TO_BASKET';
 export const REMOVE_FROM_BASKET = 'REMOVE_FROM_BASKET';
+export const SET_PRODUCT_AMOUNT = 'SET_PRODUCT_AMOUNT';
 
 /*
  * action creators
@@ -19,4 +20,9 @@ export class RemoveFromBasket {
   constructor(public productId: string) {}
 }
 
-export type Actions = AddToBasket | RemoveFromBasket;
+export class SetProductAmount {
+  readonly type = SET_PRODUCT_AMOUNT;
+  constructor(public productId: string, public amount: number) {}
+}
+
+export type Actions = AddToBasket | RemoveFromBasket | SetProductAmount;

@@ -1,8 +1,10 @@
 import {
   Actions,
   ADD_TO_BASKET,
+  SET_PRODUCT_AMOUNT,
   REMOVE_FROM_BASKET,
 } from './actions';
+import { preciseAddition } from '../../utils/utils';
 
 // Basket Type Guard
 function isBasket(obj: any): obj is BasketItem[] {
@@ -62,8 +64,22 @@ const reducer = (state = initialState, action: Actions): BasketState => {
       return { ...state, basket };
     }
 
+    case SET_PRODUCT_AMOUNT: {
+      const basket = state.basket.map(item => {
+        if (item.product.id !== action.productId) return item;
+        return {
+          ...item,
+          amount: action.amount,
+        }
+      });
+
+      localStorage.setItem('basket', JSON.stringify(basket));
+      return { ...state, basket };
+    }
+
     case REMOVE_FROM_BASKET: {
       const basket = state.basket.filter(item => item.product.id !== action.productId);
+      localStorage.setItem('basket', JSON.stringify(basket));
       return { ...state, basket };
     }
 
@@ -78,6 +94,18 @@ export const getBasketSize = (state: RootState) => (
     (accumulator, currentValue) => accumulator + currentValue.amount, 0
   )
 );
+
+export const getBasketTotalPrice = (state: RootState) => {
+  const totalPrice = state.basketState.basket.reduce(
+    (accumulator, currentValue) => {
+      const newValue = (currentValue.amount * currentValue.product.price);
+      return preciseAddition(accumulator, newValue);
+    }, 0
+  );
+
+  const totalPriceTwoDecimals = totalPrice.toFixed(2);
+  return totalPriceTwoDecimals;
+};
 
 export const getBasketItems = (state: RootState) => (
   state.basketState.basket
