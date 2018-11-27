@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../../components/Section';
+import Section from '../../components/Styled/Section';
 import { connect } from 'react-redux';
 import { getBasketItems, getBasketTotalPrice } from '../../stores/basket/reducer';
 import styled from 'styled-components';

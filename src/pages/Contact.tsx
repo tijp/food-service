@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleMaps from '../components/GoogleMaps';
-import Section from '../components/Section';
+import Section from '../components/Styled/Section';
 
 const Contact = () => (
   <Section>

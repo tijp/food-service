@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import { AddToBasket } from '../stores/basket/actions';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import Section from '../components/Section';
+import Section from '../components/Styled/Section';
 import { Row } from '../components/Styled/Row';
 
 const Image = styled.img`

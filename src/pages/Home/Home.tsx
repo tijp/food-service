@@ -3,7 +3,7 @@ import React from 'react';
 import ShowcaseList from '../../components/ShowcaseList';
 import { getProductFromCategory, CATEGORIES } from '../../assets/mockedProducts';
 import Jumbotron from './Jumbotron';
-import Section from '../../components/Section';
+import Section from '../../components/Styled/Section';
 
 const Home = () => (
   <section>
