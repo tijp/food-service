@@ -4,7 +4,7 @@ import App from './pages/app/App';
 import * as serviceWorker from './serviceWorker';
 
 import 'normalize.css';
-import './skeleton.css';
+// import './skeleton.css';
 import './index.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
