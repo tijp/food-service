@@ -1,4 +1,5 @@
 import React, { FormEvent } from 'react';
+import Select from '../Styled/Select';
 
 interface IProps {
   value: string | number;
@@ -7,7 +8,7 @@ interface IProps {
 
 const SelectField: React.SFC<IProps> = ({ value, onChange }) => {
   return (
-    <select value={value} onChange={onChange}>
+    <Select value={value} onChange={onChange}>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -18,7 +19,7 @@ const SelectField: React.SFC<IProps> = ({ value, onChange }) => {
       <option value="8">8</option>
       <option value="9">9</option>
       <option value="10">10</option>
-    </select>
+    </Select>
   );
 };
 

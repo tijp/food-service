@@ -6,11 +6,12 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
 
-import Home from '../Home/Home';
+import Home from '../Home';
 import Products from '../Products';
 import Info from '../Info';
 import Contact from '../Contact';
-import Basket from '../Basket/Basket';
+import Basket from '../Basket';
+import Checkout from '../Checkout';
 
 const MaxWidth = styled.div`
   flex: 1;
@@ -30,7 +31,10 @@ const Routes = () => (
           <Route path="/" exact component={Home} />
           <Route path="/products" component={Products} />
           <Route path="/info/:id" component={Info} />
+
           <Route path="/basket" component={Basket} />
+          <Route path="/checkout" component={Checkout} />
+          
           <Route path="/contact" component={Contact} />
           <Redirect to="/" />
         </Switch>

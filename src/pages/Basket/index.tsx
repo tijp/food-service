@@ -5,6 +5,7 @@ import { getBasketItems, getBasketTotalPrice } from '../../stores/basket/reducer
 import styled from 'styled-components';
 import BasketItem from './BasketItem';
 import Button from '../../components/Button';
+import { Link } from 'react-router-dom';
 
 const List = styled.ul`
   list-style: none;
@@ -36,7 +37,9 @@ const Basket: React.SFC<IProps> = ({ basketItems, basketTotalPrice }) => (
     <h3 style={{ display: 'flex', justifyContent: 'flex-end' }}>€{basketTotalPrice}</h3>
 
     <ButtonContainer>
-      <Button text="Bestellen" onClick={() => null} />
+      <Link to="/checkout">
+        <Button text="Bestellen" onClick={() => null} />
+      </Link>
     </ButtonContainer>
   </Section>
 );

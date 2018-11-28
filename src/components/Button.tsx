@@ -18,7 +18,7 @@ const StyledButton = styled.button`
   transition: all .3s cubic-bezier(.645,.045,.355,1);
 
   color: #fff;
-  border-color: ${COLORS.PRIMARY_COLOR};
+  border: none;
   background-color: ${COLORS.PRIMARY_COLOR};
   text-shadow: 0 -1px 0 rgba(0,0,0,.12);
   box-shadow: 0 2px 0 rgba(0,0,0,.035);
@@ -31,7 +31,8 @@ const StyledButton = styled.button`
 
 interface IProps {
   text: string;
-  onClick: () => void;
+  type?: string;
+  onClick?: () => void;
 }
 
 const Button: React.SFC<IProps> = ({ text, ...props }) => (
