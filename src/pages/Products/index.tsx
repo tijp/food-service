@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../components/Styled/Section';
+import Section from '../../components/Styled/Section';
 
 const Products = () => (
   <Section>
