@@ -6,6 +6,8 @@ import Section from '../../components/Styled/Section';
 import Button from '../../components/Button';
 import { FormInput, RequiredFormInput, FormTextarea } from './FormInput';
 import PickupTimes from './PickupTimes';
+import { getBasketTotalPrice } from '../../stores/basket/reducer';
+import { connect } from 'react-redux';
 
 export interface CheckoutFormValues {
   firstName: string;
@@ -14,7 +16,11 @@ export interface CheckoutFormValues {
   email: string;
 }
 
-const Checkout = () => (
+interface IProps {
+  basketTotalPrice: string;
+}
+
+const Checkout: React.SFC<IProps> = ({ basketTotalPrice }) => (
   <Section>
     <h1>Checkout</h1>
 
@@ -59,7 +65,10 @@ const Checkout = () => (
 
             <FormTextarea id="remarks" label="Opmerkingen" />
 
-            <Button type="submit" text="Submit" />
+            <br />
+            <h4>Total price</h4>
+            <h3>€{basketTotalPrice}</h3>
+            <Button type="submit" text="Pay" />
           </Form>
         );
       }}
@@ -67,4 +76,8 @@ const Checkout = () => (
   </Section>
 );
 
-export default Checkout;
+const mapStateToProps = (state: RootState) => ({
+  basketTotalPrice: getBasketTotalPrice(state),
+});
+
+export default connect(mapStateToProps)(Checkout);
