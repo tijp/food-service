@@ -41,11 +41,20 @@ const ImageText = styled.h4`
   position: absolute;
   bottom: 0;
   margin: 0 0 10px 10px;
+  text-transform: uppercase;
 `;
 
+const CategoryCard = (category: string) => (
+  <Link to={`/products#${category}`} key={category}>
+    <ImageOverlay>
+      <ImageText>{category}</ImageText>
+      <CategoryImage src={require(`../../assets/images/categories/${category}.jpg`)} />
+    </ImageOverlay>
+  </Link>
+);
+
 const Home = () => {
-  // const categories = Object.values(CATEGORIES);
-  // console.log(categories);
+  const categories: string[] = Object.values(CATEGORIES);
 
   return (
     <section>
@@ -53,21 +62,7 @@ const Home = () => {
     
       <Section>
         <h2>We offer</h2>
-
-        <Link to="/products#Category 2">
-          <ImageOverlay>
-            <ImageText>CATEGORY 1</ImageText>
-            <CategoryImage src={require('../../assets/images/food1.jpg')} />
-          </ImageOverlay>
-        </Link>
-        <ImageOverlay>
-          <ImageText>CATEGORY 2</ImageText>
-          <CategoryImage src={require('../../assets/images/food2.jpg')} />
-        </ImageOverlay>
-        <ImageOverlay>
-          <ImageText>CATEGORY 3</ImageText>
-          <CategoryImage src={require('../../assets/images/food3.jpg')} />
-        </ImageOverlay>
+        { categories.map(CategoryCard) }
       </Section>
     </section>
   );

@@ -39,7 +39,7 @@ const Jumbotron = () => (
     <Content>
       <h2>This website is using the new React Hooks</h2>
       <Link to="/products">
-        <Button text="Show more" onClick={() => 'TODO'} />
+        <Button text="Discover products" onClick={() => 'TODO'} />
       </Link>
     </Content>
 
