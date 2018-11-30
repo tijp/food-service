@@ -37,9 +37,8 @@ const Thumbnail = styled.img`
   }
 `;
 
-const CategoryTitle = styled.h4`
+const CategoryTitle = styled.h2`
   margin: 24px 0;
-  font-size: calc(16px + 2vmin);
   font-weight: 800;
 `;
 
@@ -50,14 +49,12 @@ const TextContainer = styled.div`
   align-items: baseline;
 `;
 
-const ItemTitle = styled.h5`
+const ItemTitle = styled.h3`
   margin: 12px 6px;
-  font-size: 20px;
   font-weight: 500;
-  `;
+`;
 
 const Price = styled(ItemTitle)`
-  font-size: 22px;
   font-weight: 600;
 `;
 
@@ -76,7 +73,7 @@ const ShowcaseListItem = ({ item }: any) => (
 
 const ShowcaseList: React.SFC<IProps> = ({ name, showcaseItems }) => (
   <>
-    <CategoryTitle>{name}</CategoryTitle>
+    <CategoryTitle id={name}>{name}</CategoryTitle>
     <Row>
       { showcaseItems.map(item => <ShowcaseListItem key={item.title} item={item} />) }
     </Row>
