@@ -33,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  border-top: 3px solid #f39c12;
 }
 
 h1 { font-size: 2em; }

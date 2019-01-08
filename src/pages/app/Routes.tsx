@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
+import COLORS from '../../assets/colors';
 
 import Home from '../Home';
 import Products from '../Products';
@@ -18,6 +19,7 @@ const MaxWidth = styled.div`
   flex: 1;
   margin: 0 auto;
   width: 100%; max-width: 1238px;
+
   /* padding: 32px; // Desktop */
   /* padding: 24px 16px; // Mobile */
 `;

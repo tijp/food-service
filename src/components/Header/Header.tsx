@@ -10,11 +10,11 @@ import BasketButton from './BasketButton';
 const HeaderContainer = styled.header`
   /* margin-top: 20px; */
   /* margin-bottom: 44px; */
-  border-top: 3px solid ${COLORS.PRIMARY_COLOR};
 `;
 
 const Row = styled.div`
-  padding: 20px 16px;
+  /* padding: 20px 16px; */
+  padding: 10px 0;
 
   display: flex;
   flex-direction: row;
@@ -32,6 +32,7 @@ const Logo = styled(Link)`
   font-size: calc(22px + 2vmin);
   letter-spacing: -2px;
   text-decoration: none;
+  margin: 10px 0;
 `;
 
 const LogoColorSpan = styled.span`
@@ -44,6 +45,10 @@ const Hamburger = styled(HamburgerSVG)`
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (min-width: 875px) {
+    display: none;
   }
 `;
 
@@ -59,9 +64,26 @@ const NavLink = styled(Link)`
     color: ${COLORS.PRIMARY_COLOR};
     transition: color 300ms ease;
   }
+
+  @media (min-width: 875px) {
+    font-size: 1.3em;
+    font-weight: 500;
+  }
 `;
 
-const Nav = styled.ul<{ open?: boolean }>`
+const Nav = styled.ul`
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  margin-right: 40px;
+
+  @media (max-width: 874px) {
+    display: none;
+  }
+`;
+
+const HamburgerNav = styled.ul<{ open?: boolean }>`
   list-style: none;
   padding: 0;
   /* float: left; */
@@ -84,6 +106,10 @@ const Nav = styled.ul<{ open?: boolean }>`
     font-weight: 500;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
+
+  @media (min-width: 875px) {
+    display: none;
+  }
 `;
 
 const Header = () => {
@@ -92,26 +118,32 @@ const Header = () => {
   const li = (text: string, path: string) =>
     <li onClick={() => setExpandNav(false)}><NavLink to={path}>{text}</NavLink></li>;
 
+  const MenuItems = () => (
+    <>
+      {li('Products', '/products')}
+      {li('FAQ', '/faq')}
+      {li('Contact', '/contact')}
+    </>
+  );
+
 
   return (
     <HeaderContainer>
-
       <Row>
         <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
+        <Row>
+          <Nav role="navigation"><MenuItems /></Nav>
 
-        <IconContainer>
-          <BasketButton />
-          <Hamburger onClick={() => setExpandNav(!expandNav)} />
-        </IconContainer>
+          <IconContainer>
+            <BasketButton />
+            <Hamburger onClick={() => setExpandNav(!expandNav)} />
+          </IconContainer>
+        </Row>
       </Row>
 
-      <Nav open={expandNav} role="navigation">
-        {li('Products', '/products')}
-        {li('FAQ', '/faq')}
-        {li('Contact', '/contact')}
-      </Nav>
-
-      {/* <MenuItem to="/contact">Contact</MenuItem> */}
+      <HamburgerNav open={expandNav} role="navigation">
+        <MenuItems />
+      </HamburgerNav>
     </HeaderContainer>
   );
 };
