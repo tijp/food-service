@@ -2,24 +2,22 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import BasketButton from './BasketButton';
+import { ReactComponent as HamburgerSVG } from '../../assets/icons/line-menu.svg';
 import COLORS from '../../assets/colors';
 
-import { ReactComponent as HamburgerSVG } from '../../assets/icons/line-menu.svg';
-import BasketButton from './BasketButton';
-
-const HeaderContainer = styled.header`
-  /* margin-top: 20px; */
-  /* margin-bottom: 44px; */
-`;
-
 const Row = styled.div`
-  /* padding: 20px 16px; */
-  padding: 10px 0;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+const Padding = styled(Row)`
+  padding: 10px 0;
+  @media (max-width: 1088px) {
+    padding: 10px 16px;
+  }
 `;
 
 const IconContainer = styled(Row)`
@@ -29,7 +27,7 @@ const IconContainer = styled(Row)`
 const Logo = styled(Link)`
   color: unset;
   font-weight: 800;
-  font-size: calc(22px + 2vmin);
+  font-size: calc(22px + 1.8vmin);
   letter-spacing: -2px;
   text-decoration: none;
   margin: 10px 0;
@@ -66,7 +64,7 @@ const NavLink = styled(Link)`
   }
 
   @media (min-width: 875px) {
-    font-size: 1.3em;
+    font-size: 1.15em;
     font-weight: 500;
   }
 `;
@@ -120,16 +118,17 @@ const Header = () => {
 
   const MenuItems = () => (
     <>
-      {li('Products', '/products')}
-      {li('FAQ', '/faq')}
+      {/* {li('Products', '/products')} */}
+      {li('Vragen', '/vragen')}
       {li('Contact', '/contact')}
+      {li('Over ons', '/over-ons')}
     </>
   );
 
 
   return (
-    <HeaderContainer>
-      <Row>
+    <header>
+      <Padding>
         <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
         <Row>
           <Nav role="navigation"><MenuItems /></Nav>
@@ -139,12 +138,12 @@ const Header = () => {
             <Hamburger onClick={() => setExpandNav(!expandNav)} />
           </IconContainer>
         </Row>
-      </Row>
+      </Padding>
 
       <HamburgerNav open={expandNav} role="navigation">
         <MenuItems />
       </HamburgerNav>
-    </HeaderContainer>
+    </header>
   );
 };
 

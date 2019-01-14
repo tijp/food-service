@@ -5,23 +5,21 @@ import styled from 'styled-components';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
-import COLORS from '../../assets/colors';
 
 import Home from '../Home';
-import Products from '../Products';
 import Info from '../Info';
 import Contact from '../Contact';
-import Basket from '../Basket';
-import Checkout from '../Checkout';
 import FAQ from '../FAQ';
+import About from '../About';
+// import Products from '../Products';
+// import Basket from '../Basket';
+// import Checkout from '../Checkout';
 
 const MaxWidth = styled.div`
   flex: 1;
   margin: 0 auto;
-  width: 100%; max-width: 1238px;
-
-  /* padding: 32px; // Desktop */
-  /* padding: 24px 16px; // Mobile */
+  width: 100%;
+  max-width: 1056px;
 `;
 
 const Routes = () => (
@@ -32,14 +30,15 @@ const Routes = () => (
 
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/products" component={Products} />
+          {/* <Route path="/products" component={Products} /> */}
           <Route path="/info/:id" component={Info} />
 
-          <Route path="/basket" component={Basket} />
-          <Route path="/checkout" component={Checkout} />
+          {/* <Route path="/basket" component={Basket} /> */}
+          {/* <Route path="/checkout" component={Checkout} /> */}
           
-          <Route path="/faq" component={FAQ} />
+          <Route path="/vragen" component={FAQ} />
           <Route path="/contact" component={Contact} />
+          <Route path="/over-ons" component={About} />
           <Redirect to="/" />
         </Switch>
       </MaxWidth>

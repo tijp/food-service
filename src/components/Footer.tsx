@@ -1,19 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import FacebookIcon from '../assets/icons/facebook.svg';
-import TwitterIcon from '../assets/icons/twitter.svg';
-import InstagramIcon from '../assets/icons/instagram.svg';
 
 const FooterContainer = styled.footer`
-  /* flex-shrink: 0; */
   width: 100vw;
-  margin-top: 40px;
+  margin-top: 100px;
   background: #333;
 `;
 
 const Content = styled.div`
-  max-width: 1238px;
+  max-width: 1056px;
   margin: 0 auto;
   padding: 32px;
 
@@ -22,15 +20,32 @@ const Content = styled.div`
   font-weight: bold;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
-const Col = styled.div`
+const Line = styled.hr`
+  width: 100%; height: 2px;
+  border: none;
+  background: #666;
+`;
+
+const StyledLink = styled(Link)`
+  width: fit-content;
+  color: #fff;
+  text-decoration: none;
+  margin: .65em 0;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 300ms ease;
+  }
 `;
 
 const Icon = styled.img`
-  margin-right: 15px;
-
+  margin-top: 20px;
   &:hover {
     cursor: pointer;
   }
@@ -40,25 +55,25 @@ const Copyright = styled.i`
   display: flex;
   justify-content: center;
   color: #fff;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
+  font-size: 14px;
 `;
 
 const Footer = () => (
   <FooterContainer>
     <Content>
-      <Col>
-        <Icon src={FacebookIcon} width={48} />
-        <Icon src={TwitterIcon} width={48} />
-        <Icon src={InstagramIcon} width={48} />
-      </Col>
-      <Col />
-      <Col>
-        <p>Contact</p>
-        <p>About</p>
-      </Col>
+      <h3>FoodService</h3>
+
+      <Line />
+      <StyledLink to="/vragen">Vragen</StyledLink>
+      <StyledLink to="/contact">Contact</StyledLink>
+      <StyledLink to="/over-ons">Over ons</StyledLink>
+      <Line />
+
+      <Icon src={FacebookIcon} width={48} height={48} />
     </Content>
 
-    <Copyright>© Copyright 2018</Copyright>
+    <Copyright>© Copyright 2019</Copyright>
   </FooterContainer>
 );
 
