@@ -1,12 +1,20 @@
+interface PriceOption {
+  id: string;
+  price: number;
+  description?: string,
+}
+
 interface Product {
   id: string;
   title: string;
   category: string;
-  price: number;
+  prices: PriceOption[];
   img: string;
 }
 
 interface BasketItem {
-  product: Product;
+  id: string;
+  productId: string;
+  priceId: string
   amount: number;
 }

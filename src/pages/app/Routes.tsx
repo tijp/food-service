@@ -11,9 +11,9 @@ import Info from '../Info';
 import Contact from '../Contact';
 import FAQ from '../FAQ';
 import About from '../About';
+import Basket from '../Basket';
+import Checkout from '../Checkout';
 // import Products from '../Products';
-// import Basket from '../Basket';
-// import Checkout from '../Checkout';
 
 const MaxWidth = styled.div`
   flex: 1;
@@ -33,8 +33,8 @@ const Routes = () => (
           {/* <Route path="/products" component={Products} /> */}
           <Route path="/info/:id" component={Info} />
 
-          {/* <Route path="/basket" component={Basket} /> */}
-          {/* <Route path="/checkout" component={Checkout} /> */}
+          <Route path="/basket" component={Basket} />
+          <Route path="/checkout" component={Checkout} />
           
           <Route path="/vragen" component={FAQ} />
           <Route path="/contact" component={Contact} />

@@ -5,14 +5,15 @@ import {
   REMOVE_FROM_BASKET,
 } from './actions';
 import { preciseAddition } from '../../utils/utils';
+import { findProduct, findPrice } from '../../assets/products';
 
 // Basket Type Guard
 function isBasket(obj: any): obj is BasketItem[] {
   const isBasket = Array.isArray(obj) && obj.every((item: any) => {
-    return item.product !== undefined && item.amount !== undefined;
+    return item.id !== undefined && item.productId !== undefined &&
+      item.priceId !== undefined && item.amount !== undefined;
   });
 
-  console.log(!isBasket);
   if (!isBasket) localStorage.removeItem('basket');
   return isBasket;
 }
@@ -43,16 +44,16 @@ const initialState: BasketState = {
 const reducer = (state = initialState, action: Actions): BasketState => {
   switch (action.type) {
     case ADD_TO_BASKET: {
-      const { id } = action.basketItem.product;
+      const { id } = action.basketItem;
 
       let basket;
-      const itemAlreadyInBasket = state.basket.find(item => item.product.id === id);
+      const itemAlreadyInBasket = state.basket.find(item => item.id === id);
       if (!itemAlreadyInBasket)
         basket = [...state.basket, action.basketItem];
 
       else {
         basket = state.basket.map(item => {
-          if (item.product.id !== id) return item;
+          if (item.id !== id) return item;
           return {
             ...item,
             amount: item.amount + action.basketItem.amount,
@@ -66,7 +67,7 @@ const reducer = (state = initialState, action: Actions): BasketState => {
 
     case SET_PRODUCT_AMOUNT: {
       const basket = state.basket.map(item => {
-        if (item.product.id !== action.productId) return item;
+        if (item.id !== action.basketId) return item;
         return {
           ...item,
           amount: action.amount,
@@ -78,7 +79,7 @@ const reducer = (state = initialState, action: Actions): BasketState => {
     }
 
     case REMOVE_FROM_BASKET: {
-      const basket = state.basket.filter(item => item.product.id !== action.productId);
+      const basket = state.basket.filter(item => item.id !== action.basketId);
       localStorage.setItem('basket', JSON.stringify(basket));
       return { ...state, basket };
     }
@@ -98,13 +99,17 @@ export const getBasketSize = (state: RootState) => (
 export const getBasketTotalPrice = (state: RootState) => {
   const totalPrice = state.basketState.basket.reduce(
     (accumulator, currentValue) => {
-      const newValue = (currentValue.amount * currentValue.product.price);
+      const priceObject = findPrice(currentValue.productId, currentValue.priceId);
+      if (!priceObject) return 0;
+
+      const newValue = (currentValue.amount * priceObject.price);
       return preciseAddition(accumulator, newValue);
     }, 0
   );
 
   const totalPriceTwoDecimals = totalPrice.toFixed(2);
   return totalPriceTwoDecimals;
+  return 'nope';
 };
 
 export const getBasketItems = (state: RootState) => (

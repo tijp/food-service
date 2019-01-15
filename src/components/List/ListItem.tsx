@@ -49,17 +49,23 @@ const Price = styled(Title)`
   font-weight: 600;
 `;
 
-const ListItem = ({ item }: any) => (
-  <Container to={`/info/${item.id}`}>
-    <ImageContainer>
-      <Thumbnail src={item.img} alt="food 1" />
-    </ImageContainer>
+const ListItem: React.SFC<{ item: Product }> = ({ item }) => {
+  const price = item.prices[0].price.toLocaleString('nl');
+  const priceText = item.prices.length > 1 ?
+    `Vanaf €${price}` : `€${price}`;
 
-    <TextContainer>
-      <Title>{item.title}</Title>
-      <Price>€{item.price.toLocaleString('nl')}</Price>
-    </TextContainer>
-  </Container>
-);
+  return (
+    <Container to={`/info/${item.id}`}>
+      <ImageContainer>
+        <Thumbnail src={item.img} alt="food 1" />
+      </ImageContainer>
+
+      <TextContainer>
+        <Title>{item.title}</Title>
+        <Price>{priceText}</Price>
+      </TextContainer>
+    </Container>
+  );
+};
 
 export default ListItem;

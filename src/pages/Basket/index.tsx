@@ -23,18 +23,16 @@ interface IProps {
 }
 
 const Basket: React.SFC<IProps> = ({ basketItems, basketTotalPrice }) => (
-  <Section>
-    <h1>Basket</h1>
-
+  <Section title="Winkelwagen">
     <List>
       {
-        basketItems.length === 0 ?
-          'Basket is empty' :
-          basketItems.map(item => <BasketItem key={item.product.id} item={item} />)
+        basketItems.length < 1 ?
+          'De winkelwagen is leeg' :
+          basketItems.map(item => <BasketItem key={item.id} basketItem={item} />)
       }
     </List>
 
-    <h3 style={{ display: 'flex', justifyContent: 'flex-end' }}>€{basketTotalPrice}</h3>
+    <h3 style={{ display: 'flex', justifyContent: 'flex-end' }}>Totaal €{basketTotalPrice}</h3>
 
     <ButtonContainer>
       <Link to="/checkout">

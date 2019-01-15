@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Select from '../../components/Styled/Select';
 import { Field } from 'formik';
-import { Row } from '../../components/Styled/Row';
+import { Row } from '../../components/Styled/Layout';
 
 const Label = styled.label`
   display: block;

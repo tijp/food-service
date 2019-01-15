@@ -17,12 +17,12 @@ export class AddToBasket {
 
 export class RemoveFromBasket {
   readonly type = REMOVE_FROM_BASKET;
-  constructor(public productId: string) {}
+  constructor(public basketId: string) {}
 }
 
 export class SetProductAmount {
   readonly type = SET_PRODUCT_AMOUNT;
-  constructor(public productId: string, public amount: number) {}
+  constructor(public basketId: string, public amount: number) {}
 }
 
 export type Actions = AddToBasket | RemoveFromBasket | SetProductAmount;

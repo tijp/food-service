@@ -16,6 +16,9 @@ const faqs: FAQ[] = [{
 }, {
   q: 'Ik wil graag een schaal met hapjes bestellen, maar wil zelf de verschillende hapjes bepalen.',
   a: 'Dit is geen probleem. Vermeld dit tijdens het bestellen in de opmerkingen of neem contact met ons op.',
+}, {
+  q: 'Ik kan enkel salades bestellen voor 4 of 8 personen, maar wil graag voor x aantal personen bestellen.',
+  a: 'Als u contact met ons op neemt zullen wij een bestelling op maat maken.',
 }];
 
 const Item = styled.div`
