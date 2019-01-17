@@ -3,12 +3,12 @@ import 'firebase/firestore';
 
 const initializeFirebase = () => {
   firebase.initializeApp({
-    apiKey: 'AIzaSyBp_fZo5T2zNkoEC0HFR8rYJUOEDNhTfqQ',
-    authDomain: 'hapjesvanelsid.firebaseapp.com',
-    databaseURL: 'https://hapjesvanelsid.firebaseio.com',
-    projectId: 'hapjesvanelsid',
-    storageBucket: 'hapjesvanelsid.appspot.com',
-    messagingSenderId: '850655764627'
+    apiKey: 'XXXXX',
+    authDomain: 'XXXXX',
+    databaseURL: 'XXXXX',
+    projectId: 'XXXXX',
+    storageBucket: 'XXXXX',
+    messagingSenderId: 'XXXXX'
   });
   
   // Initialize Cloud Firestore through Firebase
