@@ -4,6 +4,7 @@ import { Action, applyMiddleware, compose, createStore, Dispatch, Middleware } f
 
 import rootReducer from '../../stores/reducers';
 import Routes from './Routes';
+import initializeFirebase from './initializeFirebase';
 
 declare global {
   // tslint:disable-next-line interface-name
@@ -21,6 +22,8 @@ const configureStore = () => {
   );
 };
 export const store = configureStore();
+
+initializeFirebase();
 
 const App = () => (
   <Provider store={store}>

@@ -40,7 +40,7 @@ interface IProps {
 }
 
 const BasketButton: React.SFC<IProps> = ({ basketSize }) => (
-  <Container to="/basket">
+  <Container to="/winkelwagen">
     <ShoppingCartIcon />
     { basketSize > 0 &&
       <BasketQuantity>{basketSize}</BasketQuantity> }

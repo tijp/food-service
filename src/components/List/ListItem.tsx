@@ -17,7 +17,15 @@ const ImageContainer = styled.div`
   transform: translateZ(0);
 
   @media (max-width: 840px) {
-    height: 240px;
+    height: 220px;
+  }
+
+  @media (max-width: 623px) {
+    height: 280px;
+  }
+
+  @media (max-width: 400px) {
+    height: 220px;
   }
 `;
 

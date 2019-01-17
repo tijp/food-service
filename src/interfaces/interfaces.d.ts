@@ -15,6 +15,8 @@ interface Product {
 interface BasketItem {
   id: string;
   productId: string;
-  priceId: string
+  priceId: string;
   amount: number;
+  title: string;
+  description?: string;
 }

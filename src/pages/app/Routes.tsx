@@ -33,8 +33,8 @@ const Routes = () => (
           {/* <Route path="/products" component={Products} /> */}
           <Route path="/info/:id" component={Info} />
 
-          <Route path="/basket" component={Basket} />
-          <Route path="/checkout" component={Checkout} />
+          <Route path="/winkelwagen" component={Basket} />
+          <Route path="/bestellen" component={Checkout} />
           
           <Route path="/vragen" component={FAQ} />
           <Route path="/contact" component={Contact} />
