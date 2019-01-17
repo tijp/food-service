@@ -21,6 +21,8 @@ const ValidationError = styled.div`
 
 const StyledField = styled(Field)`
   height: 36px;
+  width: 100%;
+  max-width: 260px;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: #fff;
   border: 1px solid #D1D1D1;
@@ -43,25 +45,16 @@ interface FormInput {
   id: string;
   label: string;
   type?: string;
-}
-
-export const FormInput: React.SFC<FormInput> = ({ id, label, type = 'text' }) => (
-  <Container>
-    <Label htmlFor={id}>{label}</Label>
-    <StyledField id={id} name={id} type={type} />
-  </Container>
-);
-
-interface RequiredFormInput extends FormInput {
+  required?: boolean;
   touched: FormikTouched<CheckoutFormValues>;
   errors: FormikErrors<CheckoutFormValues>;
 }
 
-export const RequiredFormInput: React.SFC<RequiredFormInput> = ({ id, label, type = 'text', errors, touched }) => {
+export const FormInput: React.SFC<FormInput> = ({ id, label, type = 'text', required = false, errors, touched }) => {
   const hasError = get(errors, id) && get(touched, id);
   return (
     <Container>
-      <Label htmlFor={id}>{label} *</Label>
+      <Label htmlFor={id}>{label}{required && ' *'}</Label>
       <StyledField id={id} name={id} type={type} haserror={String(hasError)} />
       { hasError && <ValidationError>{get(errors, id)}</ValidationError> }
     </Container>

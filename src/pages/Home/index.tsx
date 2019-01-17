@@ -9,10 +9,18 @@ import ShowcaseList from '../../components/List';
 const Jumbo = styled.div`
   padding: 100px 0 30px 0;
   font-size: 22px;
+
+  @media (max-width: 623px) {
+    padding-top: 10px;
+  }
 `;
 
 const JumboText = styled.h1`
   font-weight: 500;
+
+  @media (max-width: 840px) {
+    font-size: 1.85em;
+  }
 `;
 
 const Home = () => (

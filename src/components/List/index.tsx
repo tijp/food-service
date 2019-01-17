@@ -15,6 +15,10 @@ const Row = styled.div`
   @media (max-width: 1088px) {
     grid-gap: 32px;
   }
+
+  @media (max-width: 840px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
 `;
 
 const CategoryTitle = styled.h2`

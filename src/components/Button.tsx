@@ -2,15 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import COLORS from '../assets/colors';
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ small?: boolean }>`
   display: inline-block;
   text-align: center;
   touch-action: manipulation;
   cursor: pointer;
 
-  height: 44px;
-  padding: 0 25px;
-  font-size: 18px;
   font-weight: 700;
   border-radius: 4px;
   user-select: none;
@@ -23,6 +20,10 @@ const StyledButton = styled.button`
   text-shadow: 0 -1px 0 rgba(0,0,0,.12);
   box-shadow: 0 2px 0 rgba(0,0,0,.035);
 
+  height: ${props => props.small ? '38px' : '44px'};
+  font-size: ${props => props.small ? '16px' : '18px'};
+  padding: ${props => props.small ? '0 15px' : '0 25px'};
+
   &:hover {
     border-color: ${COLORS.SECONDARY_COLOR};
     background-color: ${COLORS.SECONDARY_COLOR};
@@ -32,6 +33,7 @@ const StyledButton = styled.button`
 interface IProps {
   text: string;
   type?: string;
+  small?: boolean;
   onClick?: () => void;
 }
 

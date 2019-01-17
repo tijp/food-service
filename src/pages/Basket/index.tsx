@@ -17,6 +17,11 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
 `;
 
+const TotalPriceLabel = styled.h3`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 interface IProps {
   basketItems: BasketItem[];
   basketTotalPrice: string;
@@ -32,13 +37,18 @@ const Basket: React.SFC<IProps> = ({ basketItems, basketTotalPrice }) => (
       }
     </List>
 
-    <h3 style={{ display: 'flex', justifyContent: 'flex-end' }}>Totaal €{basketTotalPrice}</h3>
+    {
+      basketItems.length > 0 &&
+        <>
+          <TotalPriceLabel>Totaal €{basketTotalPrice}</TotalPriceLabel>
 
-    <ButtonContainer>
-      <Link to="/checkout">
-        <Button text="Bestellen" onClick={() => null} />
-      </Link>
-    </ButtonContainer>
+          <ButtonContainer>
+            <Link to="/bestellen">
+              <Button text="Bestellen" onClick={() => null} />
+            </Link>
+          </ButtonContainer>
+        </>
+    }
   </Section>
 );
 
