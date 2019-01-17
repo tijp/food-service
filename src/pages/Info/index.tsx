@@ -90,8 +90,12 @@ const Info: React.SFC<IProps> = props => {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 48px;
+
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
 `;
 
 const Image = styled.img`
