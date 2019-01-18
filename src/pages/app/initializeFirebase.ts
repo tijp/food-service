@@ -1,17 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { FIREBASE_CONFIG } from '../../SECRETS';
 
 const initializeFirebase = () => {
-  firebase.initializeApp({
-    apiKey: 'XXXXX',
-    authDomain: 'XXXXX',
-    databaseURL: 'XXXXX',
-    projectId: 'XXXXX',
-    storageBucket: 'XXXXX',
-    messagingSenderId: 'XXXXX'
-  });
+  firebase.initializeApp(FIREBASE_CONFIG);
 }
-
-
 
 export default initializeFirebase;
