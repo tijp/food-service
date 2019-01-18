@@ -44,7 +44,7 @@ const Basket: React.SFC<IProps> = ({ basketItems, basketTotalPrice }) => (
 
           <ButtonContainer>
             <Link to="/bestellen">
-              <Button text="Bestellen" onClick={() => null} />
+              <Button>Bestellen</Button>
             </Link>
           </ButtonContainer>
         </>

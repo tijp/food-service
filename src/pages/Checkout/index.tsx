@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form, FormikActions } from 'formik';
 import { History } from 'history';
@@ -12,6 +12,7 @@ import Button from '../../components/Button';
 import { FormInput, FormTextarea } from './FormInput';
 import PickupTimes from './PickupTimes';
 import { getBasketTotalPrice, getBasketItems } from '../../stores/basket/reducer';
+import FinishedCheckout from './FinishedCheckout';
 
 // Validation strings
 const REQUIRED_MESSAGE = 'Dit veld is verplicht';
@@ -35,6 +36,10 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history }) => {
   if (basket.length === 0)
     history.push('/');
 
+  const [fininshedCheckout, setFininshedCheckout] = useState(false);
+  if (fininshedCheckout)
+    return <FinishedCheckout />
+
   return (
     <Section title="Bestellen">
       <Formik
@@ -50,14 +55,17 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history }) => {
           console.log(values);
           console.log('dit is mijn mandinhoud', basket);
 
-          // const user = (({ email, firstName, infix, lastName }) => ({ email, firstName, infix, lastName }))(values);
-          // db.collection('users').add(user);
+          // Add user to firestore
+          const user = (({ email, firstName, infix, lastName }) => ({ email, firstName, infix, lastName }))(values);
+          db.collection('users').add(user);
 
-          // db.collection('orders').add({ completed: false, ...values })
-          //   .then(docRef => console.log('Document written with ID: ', docRef.id))
-          //   .catch(error => console.error('Error adding document: ', error));
+          // Add order to firestore
+          db.collection('orders').add({ completed: false, ...values })
+            .then(docRef => console.log('Document written with ID: ', docRef.id))
+            .catch(error => console.error('Error adding document: ', error));
 
           setSubmitting(false);
+          setFininshedCheckout(true);
         }}
         validationSchema={Yup.object().shape({
           firstName: Yup.string().required(REQUIRED_MESSAGE),
@@ -91,7 +99,7 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history }) => {
               <br />
               <h4>Totale prijs</h4>
               <h3>€{basketTotalPrice}</h3>
-              <Button type="submit" text="Betalen" />
+              <Button type="submit">Betalen</Button>
             </Form>
           );
         }}

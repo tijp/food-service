@@ -31,14 +31,13 @@ const StyledButton = styled.button<{ small?: boolean }>`
 `;
 
 interface IProps {
-  text: string;
   type?: string;
   small?: boolean;
   onClick?: () => void;
 }
 
-const Button: React.SFC<IProps> = ({ text, ...props }) => (
-  <StyledButton {...props}>{text}</StyledButton>
+const Button: React.SFC<IProps> = ({ children, ...props }) => (
+  <StyledButton {...props}>{children}</StyledButton>
 )
 
 export default Button;

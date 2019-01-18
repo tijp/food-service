@@ -30,8 +30,8 @@ const AddedToCartModal: React.SFC<IProps> = ({ showModal, closeModal, history })
       <br />
 
       <ButtonGroup>
-        <Button text="Verder winkelen" small onClick={closeModal}></Button>
-        <Button text="Naar bestellen" small onClick={goToBasket}></Button>
+        <Button small onClick={closeModal}>Verder winkelen</Button>
+        <Button small onClick={goToBasket}>Naar bestellen</Button>
       </ButtonGroup>
     </StyledModal>
   );

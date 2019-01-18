@@ -57,11 +57,7 @@ const Info: React.SFC<IProps> = props => {
               type="number" value={amount} min={1} max={50}
               onChange={event => setAmount(parseInt(event.target.value))}
             />
-            <AddToCartButton
-              small
-              text="In Winkelwagen"
-              onClick={onSubmit}
-            />
+            <AddToCartButton small onClick={onSubmit}>In winkelwagen</AddToCartButton>
           </div>
         </Prices>
       );

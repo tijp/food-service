@@ -30,22 +30,40 @@ const pickupTimes = [{
   times: ['19:00', '19:30', '20:30', '21:00'],
 }];
 
-const PickupTimes = () => (
-  <Row justifyContent="flex-start">
-    <div>
-      <Label htmlFor="date">Date</Label>
-      <SelectField id="date" name="date" component="select">
-        {pickupTimes.map(date => <option key={date.day} value={date.day}>{date.day}</option>)}
-      </SelectField>&nbsp;
-    </div>
+const calculatePickupTimes = () => {
+  const now = new Date();
+  const day = now.getDay();
 
-    <div>
-      <Label htmlFor="time">Time</Label>
-      <SelectField id="time" name="time" component="select">
-        {pickupTimes[0].times.map(time => <option key={time} value={time}>{time}</option>)}
-      </SelectField>
-    </div>
-  </Row>
-);
+  if (day !== 7) {
+    const obj = {};
+    return true;
+  } else {
+    return null;
+  }
+
+  return now;
+}
+
+const PickupTimes = () => {
+  const pickupTimes = calculatePickupTimes();
+
+  return (
+    <Row justifyContent="flex-start">
+      <div>
+        <Label htmlFor="date">Date</Label>
+        <SelectField id="date" name="date" component="select">
+          {/* {pickupTimes.map(date => <option key={date.day} value={date.day}>{date.day}</option>)} */}
+        </SelectField>&nbsp;
+      </div>
+
+      <div>
+        <Label htmlFor="time">Time</Label>
+        <SelectField id="time" name="time" component="select">
+          {/* {pickupTimes[0].times.map(time => <option key={time} value={time}>{time}</option>)} */}
+        </SelectField>
+      </div>
+    </Row>
+  );
+};
 
 export default PickupTimes;

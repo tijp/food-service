@@ -13,7 +13,6 @@ import FAQ from '../FAQ';
 import About from '../About';
 import Basket from '../Basket';
 import Checkout from '../Checkout';
-// import Products from '../Products';
 
 const MaxWidth = styled.div`
   flex: 1;
@@ -30,7 +29,6 @@ const Routes = () => (
 
         <Switch>
           <Route path="/" exact component={Home} />
-          {/* <Route path="/products" component={Products} /> */}
           <Route path="/info/:id" component={Info} />
 
           <Route path="/winkelwagen" component={Basket} />
