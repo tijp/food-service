@@ -13,66 +13,71 @@ import { FormInput, FormTextarea } from './FormInput';
 import PickupTimes from './PickupTimes';
 import { getBasketTotalPrice, getBasketItems } from '../../stores/basket/reducer';
 import FinishedCheckout from './FinishedCheckout';
+import { ClearBasket } from '../../stores/basket/actions';
+import { Dispatch } from 'redux';
 
 // Validation strings
 const REQUIRED_MESSAGE = 'Dit veld is verplicht';
 const EMAIL_INVALID = 'E-mailadres is onjuist';
 const MOBILE_INVALID = 'Mobiele nummer is onjuist';
 
+interface IProps {
+  basket: BasketItem[],
+  basketTotalPrice: string;
+  history: History;
+  clearBasket(): void;
+};
+
 export interface CheckoutFormValues {
   firstName: string;
   infix: string;
   lastName: string;
   email: string;
-}
+  mobile: string;
+};
 
-interface IProps {
-  basket: BasketItem[],
-  basketTotalPrice: string;
-  history: History;
-}
+const initialFormValues = {
+  firstName: '',
+  infix: '',
+  lastName: '',
+  email: '',
+  mobile: '',
+};
 
-const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history }) => {
+const formValidationScheme = Yup.object().shape({
+  firstName: Yup.string().required(REQUIRED_MESSAGE),
+  lastName: Yup.string().required(REQUIRED_MESSAGE),
+  email: Yup.string().email(EMAIL_INVALID).required(REQUIRED_MESSAGE),
+  mobile: Yup.string().matches(/^(((\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i, MOBILE_INVALID),
+});
+
+const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history, clearBasket }) => {
   if (basket.length === 0)
     history.push('/');
 
-  const [fininshedCheckout, setFininshedCheckout] = useState(false);
-  if (fininshedCheckout)
+  const [finishedCheckout, setFinishedCheckout] = useState(false);
+  if (finishedCheckout)
     return <FinishedCheckout />
+
+  const handleSubmit = (values: CheckoutFormValues, { setSubmitting }: FormikActions<CheckoutFormValues>) => {
+    // Add order to firestore
+    const db = firebase.firestore();
+    db.collection('orders').add({ completed: false, ...values })
+      .then(docRef => console.log('Document written with ID: ', docRef.id))
+      .catch(error => console.error('Error adding document: ', error));
+
+    setSubmitting(false);
+    setFinishedCheckout(true);
+    window.scrollTo(0, 0);
+    clearBasket();
+  };
 
   return (
     <Section title="Bestellen">
       <Formik
-        initialValues={{
-          firstName: '',
-          infix: '',
-          lastName: '',
-          email: '',
-          mobile: '',
-        }}
-        onSubmit={(values: CheckoutFormValues, { setSubmitting }: FormikActions<CheckoutFormValues>) => {
-          const db = firebase.firestore();
-          console.log(values);
-          console.log('dit is mijn mandinhoud', basket);
-
-          // Add user to firestore
-          const user = (({ email, firstName, infix, lastName }) => ({ email, firstName, infix, lastName }))(values);
-          db.collection('users').add(user);
-
-          // Add order to firestore
-          db.collection('orders').add({ completed: false, ...values })
-            .then(docRef => console.log('Document written with ID: ', docRef.id))
-            .catch(error => console.error('Error adding document: ', error));
-
-          setSubmitting(false);
-          setFininshedCheckout(true);
-        }}
-        validationSchema={Yup.object().shape({
-          firstName: Yup.string().required(REQUIRED_MESSAGE),
-          lastName: Yup.string().required(REQUIRED_MESSAGE),
-          email: Yup.string().email(EMAIL_INVALID).required(REQUIRED_MESSAGE),
-          mobile: Yup.string().matches(/^(((\+31|0|0031)6){1}[1-9]{1}[0-9]{7})$/i, MOBILE_INVALID),
-        })}
+        initialValues={initialFormValues}
+        onSubmit={handleSubmit}
+        validationSchema={formValidationScheme}
       >
         {props => {
           const requiredFormikProps = (({ touched, errors }) => ({ touched, errors }))(props);
@@ -99,7 +104,7 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history }) => {
               <br />
               <h4>Totale prijs</h4>
               <h3>€{basketTotalPrice}</h3>
-              <Button type="submit">Betalen</Button>
+              <Button type="submit">Bestelling plaatsen</Button>
             </Form>
           );
         }}
@@ -113,4 +118,8 @@ const mapStateToProps = (state: RootState) => ({
   basketTotalPrice: getBasketTotalPrice(state),
 });
 
-export default connect(mapStateToProps)(Checkout);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  clearBasket: () => dispatch(new ClearBasket()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

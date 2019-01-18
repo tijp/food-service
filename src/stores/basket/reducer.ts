@@ -3,9 +3,10 @@ import {
   ADD_TO_BASKET,
   SET_PRODUCT_AMOUNT,
   REMOVE_FROM_BASKET,
+  CLEAR_BASKET,
 } from './actions';
 import { preciseAddition } from '../../utils/utils';
-import { findProduct, findPrice } from '../../assets/products';
+import { findPrice } from '../../assets/products';
 
 // Basket Type Guard
 function isBasket(obj: any): obj is BasketItem[] {
@@ -84,6 +85,11 @@ const reducer = (state = initialState, action: Actions): BasketState => {
       return { ...state, basket };
     }
 
+    case CLEAR_BASKET: {
+      localStorage.setItem('basket', '[]');
+      return { ...state, basket: [] };
+    }
+
     default: return state;
   }
 };
@@ -109,7 +115,6 @@ export const getBasketTotalPrice = (state: RootState) => {
 
   const totalPriceTwoDecimals = totalPrice.toFixed(2);
   return totalPriceTwoDecimals;
-  return 'nope';
 };
 
 export const getBasketItems = (state: RootState) => (
