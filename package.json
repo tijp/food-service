@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "firebase": "^5.7.3",
+    "firebase": "^5.8.0",
     "formik": "^1.4.2",
     "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
-    "react": "16.7.0-alpha.2",
-    "react-dom": "16.7.0-alpha.2",
+    "react": "16.8.0-alpha.1",
+    "react-dom": "16.8.0-alpha.1",
     "react-modal": "^3.8.1",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
@@ -36,7 +36,7 @@
   ],
   "devDependencies": {
     "@types/jest": "^23.3.12",
-    "@types/lodash": "^4.14.119",
+    "@types/lodash": "^4.14.120",
     "@types/node": "^10.12.18",
     "@types/react": "^16.7.20",
     "@types/react-burger-menu": "^2.2.2",
@@ -48,6 +48,6 @@
     "@types/styled-components": "^4.1.6",
     "@types/yup": "^0.26.4",
     "source-map-explorer": "^1.6.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.4"
   }
 }

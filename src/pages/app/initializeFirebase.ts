@@ -10,14 +10,6 @@ const initializeFirebase = () => {
     storageBucket: 'XXXXX',
     messagingSenderId: 'XXXXX'
   });
-  
-  // Initialize Cloud Firestore through Firebase
-  const db = firebase.firestore();
-  
-  // Disable deprecated features
-  db.settings({
-    timestampsInSnapshots: true
-  });
 }
 
 
