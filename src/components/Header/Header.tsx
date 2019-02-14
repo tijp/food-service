@@ -118,7 +118,6 @@ const Header = () => {
 
   const MenuItems = () => (
     <>
-      {/* {li('Products', '/products')} */}
       {li('Vragen', '/vragen')}
       {li('Contact', '/contact')}
       {li('Over ons', '/over-ons')}
@@ -129,7 +128,7 @@ const Header = () => {
   return (
     <header>
       <Padding>
-        <Logo to="/">Food<LogoColorSpan>Service</LogoColorSpan></Logo>
+        <Logo to="/">Slaatjes<LogoColorSpan>van</LogoColorSpan>Els</Logo>
         <Row>
           <Nav role="navigation"><MenuItems /></Nav>
 

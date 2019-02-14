@@ -8,6 +8,7 @@ interface Product {
   id: string;
   title: string;
   category: string;
+  description: string;
   prices: PriceOption[];
   img: string;
 }

@@ -5,7 +5,7 @@ import Section from '../../components/Styled/Section';
 const Contact = () => (
   <Section title="Contact">
     <h3>E-mail</h3>
-    <a href="mailto:tim.ijpenga@gmail.com">tim.ijpenga@gmail.com</a>
+    <a href="mailto:slaatjesvanels@gmail.com">slaatjesvanels@gmail.com</a>
     <br /><br /><br />
 
     <h3>Adres</h3>

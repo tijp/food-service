@@ -66,6 +66,7 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history, clearB
       .then(docRef => console.log('Document written with ID: ', docRef.id))
       .catch(error => console.error('Error adding document: ', error));
 
+    alert('Bestelling ontvangen! U ontvangt zo snel mogelijk bericht.');
     setSubmitting(false);
     setFinishedCheckout(true);
     window.scrollTo(0, 0);
@@ -85,10 +86,12 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history, clearB
           return (
             <Form>
               <h3>Bestelling ophalen</h3>
-              <PickupTimes />
+              {/* <PickupTimes /> */}
+              <p>Geef in de opmerkingen beneden aan wanneer u de bestelling zou willen ophalen.</p>
+              <p>Helaas kan ik niet bezorgen.</p>
 
-              <br />
-              <a>link naar maps route in new tab</a>
+              {/* <br />
+              <a>link naar maps route in new tab</a> */}
 
               <br /><br />
               <h3>Persoonlijke gegevens</h3>

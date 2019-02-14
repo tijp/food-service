@@ -27,7 +27,9 @@ const Home = () => (
   <Section>
     <Jumbo>
       <JumboText>
-        Ontdek onze zelfgemaakte<br /><b>Party salades</b> & <b>Hapjes</b>
+        Ontdek mijn zelfgemaakte<br />
+        <b>Party salades</b> & <b>Hapjes</b><br />
+        uit <b>Nieuwegein</b>
       </JumboText>
     </Jumbo>
 
