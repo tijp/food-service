@@ -60,11 +60,34 @@ const Checkout: React.SFC<IProps> = ({ basket, basketTotalPrice, history, clearB
     return <FinishedCheckout />
 
   const handleSubmit = (values: CheckoutFormValues, { setSubmitting }: FormikActions<CheckoutFormValues>) => {
+    let basket = localStorage.getItem('basket') || '';
+    try {
+      basket = JSON.parse(basket);
+    } catch(error) {
+      // just keep localstorage string
+    }
+
+    const order = { basket, ...values };
+
     // Add order to firestore
     const db = firebase.firestore();
-    db.collection('orders').add({ completed: false, ...values })
+    db.collection('orders').add({ completed: false, ...order })
       .then(docRef => console.log('Document written with ID: ', docRef.id))
       .catch(error => console.error('Error adding document: ', error));
+
+    // Send order mail
+    const mailProperties = {
+      service_id: 'gmail',
+      user_id: 'user_l7KZIq0MHZmNagvYuqnbW',
+      template_id: 'template_DEzykbaP',
+      template_params: { order: JSON.stringify(order) },
+    };
+
+    fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers:{ 'Content-Type': 'application/json' },
+      body: JSON.stringify(mailProperties),
+    });
 
     alert('Bestelling ontvangen! U ontvangt zo snel mogelijk bericht.');
     setSubmitting(false);
