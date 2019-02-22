@@ -17,6 +17,20 @@
       "dom",
       "dom.iterable",
       "esnext"
+    ],
+    "types": [
+      "jest",
+      "lodash",
+      "node",
+      "react",
+      "react-burger-menu",
+      "react-dom",
+      "react-modal",
+      "react-redux",
+      "react-router-dom",
+      "react-router-hash-link",
+      "styled-components",
+      "yup"
     ]
   },
   "include": [
