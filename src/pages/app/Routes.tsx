@@ -1,7 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Router, Route, Redirect, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { history, removeHistoryListener } from './history';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer';
 import ScrollToTop from '../../components/ScrollToTop';
@@ -21,29 +22,35 @@ const MaxWidth = styled.div`
   max-width: 1056px;
 `;
 
-const Routes = () => (
-  <Router>
-    <ScrollToTop>
-      <MaxWidth>
-        <Header />
+const Routes = () => {
+  useEffect(() => {
+    return removeHistoryListener;
+  }, [])
 
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/info/:id" component={Info} />
+  return (
+    <Router history={history}>
+      <ScrollToTop>
+        <MaxWidth>
+          <Header />
 
-          <Route path="/winkelwagen" component={Basket} />
-          <Route path="/bestellen" component={Checkout} />
-          
-          <Route path="/vragen" component={FAQ} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/over-ons" component={About} />
-          <Redirect to="/" />
-        </Switch>
-      </MaxWidth>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/info/:id" component={Info} />
 
-      <Footer />
-    </ScrollToTop>
-  </Router>
-);
+            <Route path="/winkelwagen" component={Basket} />
+            <Route path="/bestellen" component={Checkout} />
+            
+            <Route path="/vragen" component={FAQ} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/over-ons" component={About} />
+            <Redirect to="/" />
+          </Switch>
+        </MaxWidth>
+
+        <Footer />
+      </ScrollToTop>
+    </Router>
+  );
+};
 
 export default Routes;

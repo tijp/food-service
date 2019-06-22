@@ -2,7 +2,7 @@ import React from 'react';
 
 import Section from '../../components/Styled/Section';
 import styled from 'styled-components';
-import { HashLink as Link } from 'react-router-hash-link';
+// import { HashLink as Link } from 'react-router-hash-link';
 import { products } from '../../assets/products';
 import ShowcaseList from '../../components/List';
 

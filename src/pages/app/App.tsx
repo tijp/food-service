@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Action, applyMiddleware, compose, createStore, Dispatch, Middleware } from 'redux';
+import ReactGA from 'react-ga';
 
 import rootReducer from '../../stores/reducers';
 import Routes from './Routes';
@@ -24,6 +25,8 @@ const configureStore = () => {
 export const store = configureStore();
 
 initializeFirebase();
+ReactGA.initialize('UA-142549318-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const App = () => (
   <Provider store={store}>

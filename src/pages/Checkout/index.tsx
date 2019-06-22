@@ -10,7 +10,7 @@ import 'firebase/firestore';
 import Section from '../../components/Styled/Section';
 import Button from '../../components/Button';
 import { FormInput, FormTextarea } from './FormInput';
-import PickupTimes from './PickupTimes';
+// import PickupTimes from './PickupTimes';
 import { getBasketTotalPrice, getBasketItems } from '../../stores/basket/reducer';
 import FinishedCheckout from './FinishedCheckout';
 import { ClearBasket } from '../../stores/basket/actions';
