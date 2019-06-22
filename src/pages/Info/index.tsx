@@ -17,52 +17,58 @@ interface IProps extends RouteComponentProps<{ id: string }> {
 
 const Info: React.SFC<IProps> = props => {
   const product = findProduct(props.match.params.id);
+  const [showModal, setShowModal] = useState(false);
+  const [amount, setAmount] = useState(1);
+
   if (!product) {
     props.history.push('/');
     return null;
   }
 
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const onModalClose = () => {
     setShowModal(false);
     document.getElementById('root')!.style.filter = 'none';
-  }
+  };
 
-  const renderPrices = (
-    product.prices.map(priceOption => {
-      const [amount, setAmount] = useState(1);
-      const onSubmit = () => {
-        props.addToBasket({
-          id: `${product.id}-${priceOption.id}`,
-          productId: product.id,
-          priceId: priceOption.id,
-          title: product.title,
-          description: priceOption.description,
-          amount,
-        });
+  const renderPrices = product.prices.map(priceOption => {
+    // const [amount, setAmount] = useState(1);
+    const onSubmit = () => {
+      props.addToBasket({
+        id: `${product.id}-${priceOption.id}`,
+        productId: product.id,
+        priceId: priceOption.id,
+        title: product.title,
+        description: priceOption.description,
+        amount,
+      });
 
-        setShowModal(true);
-        document.getElementById('root')!.style.filter = 'blur(.2em)';
-      }
+      setShowModal(true);
+      document.getElementById('root')!.style.filter = 'blur(.2em)';
+    };
 
-      return (
-        <Prices key={priceOption.id}>
-          <h3 style={{ width: 180 }}>
-            {priceOption.description && `${priceOption.description} - `}
-            €{priceOption.price}
-          </h3>
+    return (
+      <Prices key={priceOption.id}>
+        <h3 style={{ width: 180 }}>
+          {priceOption.description && `${priceOption.description} - `}€
+          {priceOption.price}
+        </h3>
 
-          <div>
-            <NumberInput
-              type="number" value={amount} min={1} max={50}
-              onChange={event => setAmount(parseInt(event.target.value))}
-            />
-            <AddToCartButton small onClick={onSubmit}>In winkelwagen</AddToCartButton>
-          </div>
-        </Prices>
-      );
-    })
-  );
+        <div>
+          <NumberInput
+            type="number"
+            value={amount}
+            min={1}
+            max={50}
+            onChange={event => setAmount(parseInt(event.target.value))}
+          />
+          <AddToCartButton small onClick={onSubmit}>
+            In winkelwagen
+          </AddToCartButton>
+        </div>
+      </Prices>
+    );
+  });
 
   return (
     <Section title={product.title}>
@@ -70,12 +76,9 @@ const Info: React.SFC<IProps> = props => {
         <Image src={product.img} />
 
         <StyledCol>
-          <Description>
-            {product.description}
-          </Description>
+          <Description>{product.description}</Description>
 
-          <div>{ renderPrices }</div>
-
+          <div>{renderPrices}</div>
         </StyledCol>
       </Grid>
 
@@ -120,7 +123,8 @@ const Prices = styled(Row)`
 `;
 
 const NumberInput = styled.input`
-  width: 35px; height: 30px;
+  width: 35px;
+  height: 30px;
   padding: 5px;
   margin-right: 5px;
   font-size: 18px;
@@ -138,4 +142,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   addToBasket: (item: BasketItem) => dispatch(new AddToBasket(item)),
 });
 
-export default connect(null, mapDispatchToProps)(Info);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Info);

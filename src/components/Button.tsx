@@ -31,7 +31,7 @@ const StyledButton = styled.button<{ small?: boolean }>`
 `;
 
 interface IProps {
-  type?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   small?: boolean;
   onClick?: () => void;
 }
