@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import BasketButton from './BasketButton';
+// import BasketButton from './BasketButton';
 import { ReactComponent as HamburgerSVG } from '../../assets/icons/line-menu.svg';
 import COLORS from '../../assets/colors';
 
@@ -120,7 +120,7 @@ const Header = () => {
     <>
       {li('Vragen', '/vragen')}
       {li('Contact', '/contact')}
-      {li('Over ons', '/over-ons')}
+      {li('Over mij', '/over-mij')}
     </>
   );
 
@@ -133,7 +133,7 @@ const Header = () => {
           <Nav role="navigation"><MenuItems /></Nav>
 
           <IconContainer>
-            <BasketButton />
+            {/* <BasketButton /> */}
             <Hamburger onClick={() => setExpandNav(!expandNav)} />
           </IconContainer>
         </Row>

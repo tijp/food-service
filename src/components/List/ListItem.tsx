@@ -11,7 +11,7 @@ const Container = styled(Link)`
 `;
 
 const ImageContainer = styled.div`
-  height: 300px;
+  height: 340px;
   border-radius: 4px;
   overflow: hidden;
   transform: translateZ(0);
@@ -58,12 +58,12 @@ const Price = styled(Title)`
 `;
 
 const ListItem: React.SFC<{ item: Product }> = ({ item }) => {
-  const price = item.prices[0].price.toLocaleString('nl');
+  const price = item.prices[0].price.toFixed(2)
   const priceText = item.prices.length > 1 ?
     `Vanaf €${price}` : `€${price}`;
 
   return (
-    <Container to={`/info/${item.id}`}>
+    <Container to={`/info/${item.category}`}>
       <ImageContainer>
         <Thumbnail src={item.img} alt="food 1" />
       </ImageContainer>

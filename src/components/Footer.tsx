@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import FacebookIcon from '../assets/icons/facebook.svg';
+// import FacebookIcon from '../assets/icons/facebook.svg';
 
 const FooterContainer = styled.footer`
   width: 100vw;
@@ -44,12 +44,12 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Icon = styled.img`
-  margin-top: 20px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+// const Icon = styled.img`
+//   margin-top: 20px;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
 const Copyright = styled.i`
   display: flex;
@@ -62,15 +62,15 @@ const Copyright = styled.i`
 const Footer = () => (
   <FooterContainer>
     <Content>
-      <h3>FoodService</h3>
+      <h3>SlaatjesvanEls</h3>
 
       <Line />
       <StyledLink to="/vragen">Vragen</StyledLink>
       <StyledLink to="/contact">Contact</StyledLink>
-      <StyledLink to="/over-ons">Over ons</StyledLink>
+      <StyledLink to="/over-mij">Over mij</StyledLink>
       <Line />
 
-      <Icon src={FacebookIcon} width={48} height={48} />
+      {/* <Icon src={FacebookIcon} width={48} height={48} /> */}
     </Content>
 
     <Copyright>© Copyright 2019</Copyright>

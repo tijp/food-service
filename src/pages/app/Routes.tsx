@@ -12,8 +12,8 @@ import Info from '../Info';
 import Contact from '../Contact';
 import FAQ from '../FAQ';
 import About from '../About';
-import Basket from '../Basket';
-import Checkout from '../Checkout';
+// import Basket from '../Basket';
+// import Checkout from '../Checkout';
 
 const MaxWidth = styled.div`
   flex: 1;
@@ -35,14 +35,14 @@ const Routes = () => {
 
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/info/:id" component={Info} />
+            <Route path="/info/:category" component={Info} />
 
-            <Route path="/winkelwagen" component={Basket} />
-            <Route path="/bestellen" component={Checkout} />
+            {/* <Route path="/winkelwagen" component={Basket} /> */}
+            {/* <Route path="/bestellen" component={Checkout} /> */}
             
             <Route path="/vragen" component={FAQ} />
             <Route path="/contact" component={Contact} />
-            <Route path="/over-ons" component={About} />
+            <Route path="/over-mij" component={About} />
             <Redirect to="/" />
           </Switch>
         </MaxWidth>
